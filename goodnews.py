@@ -1,3 +1,5 @@
+
+
 import feedparser
 
 def rss_feed_urls():
@@ -20,21 +22,26 @@ def filter_feed(feed):
 
 
 def contains_negative_words(text):
-    for word in negative_words():
-        if word in text:
+    words = set()
+    for word in text.split():
+        words.add(word.strip(".,?!"))
+
+    for negative_word in negative_words():
+        if negative_word in words:
             return True
 
     return False
+    
 
 def negative_words():
-     return {'war', 'terror'}
+     return ['war', 'terror']
 
 
 urls = rss_feed_urls()
 url = urls[0]
 feed = download_feed(url)
 positive_feed = filter_feed(feed)
-print positive_feed
+
 
 
 
