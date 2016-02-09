@@ -1,10 +1,15 @@
 import os
 
-CONFIG_FOLDER = 'config'
+def read_config_file(filename):
+    this_folder = os.path.dirname(__file__)
+    path = os.path.join(this_folder, 'config', filename)
+    
+    lines = []
+    with open(path) as f:
+        for line in f:
+            lines.append(line.strip())
+    
+    return lines
 
-def read_lines(path):
-    with open(path) as file:
-        return file.readlines()
-
-negative_words = read_lines(os.path.join(CONFIG_FOLDER, 'negative_words.txt'))
+negative_words = read_config_file('negative_words.txt')
 
