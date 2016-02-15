@@ -19,7 +19,8 @@ def filter_feed(feed):
 def contains_negative_words(text):
     words = set()
     for word in text.split():
-        words.add(word.strip(".,?!"))
+        stripped_word = word.strip(".,?!").lower()
+        words.add(stripped_word)
 
     for negative_word in config.negative_words:
         if negative_word in words:
